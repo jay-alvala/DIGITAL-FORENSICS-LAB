@@ -53,12 +53,12 @@ Once acquisition is complete, FTK Imager will generate:
 
 ---
 
-## 📷 Screenshots / Evidence
+## 📷 Screenshots
 *(Add screenshots here when you perform the experiment, e.g., memory capture screen, disk image creation, verification hash output)*
 
 ---
 
-## ✅ Result / Observations
+## ✅ Result
 - Successfully acquired volatile and non-volatile memory.  
 - Maintained integrity using write blocker and hash verification.  
 - Evidence ready for further forensic analysis.
