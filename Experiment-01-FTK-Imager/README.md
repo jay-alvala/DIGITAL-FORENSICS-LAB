@@ -3,12 +3,12 @@
 
 ---
 
-## 🎯 Objective
+##  Objective
 To acquire forensic evidence from a computer system using **FTK Imager**, including both volatile memory (RAM) and non-volatile memory (hard disks), while maintaining data integrity.
 
 ---
 
-## 🛠 Tools Used
+##  Tools Used
 - **FTK Imager (AccessData)**  
 - Windows OS  
 - USB Pen Drive / HDD (for portable usage)  
@@ -16,7 +16,7 @@ To acquire forensic evidence from a computer system using **FTK Imager**, includ
 
 ---
 
-## 📋 Procedure
+##  Procedure
 
 ### 1️⃣ Acquiring Volatile Memory (RAM)
 1. Open **FTK Imager** and navigate to the **Capture Memory** icon.  
@@ -53,7 +53,7 @@ Once acquisition is complete, FTK Imager will generate:
 
 ---
 
-## 📷 Screenshots
+##  Screenshots
 ### Volatile Memory (RAM) Capture
 ![Step 1](Screenshots/e1p1.png)
 ![Step 2](Screenshots/e1p2.png)
@@ -73,7 +73,7 @@ Once acquisition is complete, FTK Imager will generate:
 
 ---
 
-## ✅ Result
+##  Result
 - Successfully acquired volatile and non-volatile memory.  
 - Maintained integrity using write blocker and hash verification.  
 - Evidence ready for further forensic analysis.
