@@ -11,8 +11,6 @@ To acquire forensic evidence from a computer system using **FTK Imager**, includ
 ##  Tools Used
 - **FTK Imager (AccessData)**  
 - Windows OS  
-- USB Pen Drive / HDD (for portable usage)  
-- Write Blocker (for safe disk mounting)
 
 ---
 
