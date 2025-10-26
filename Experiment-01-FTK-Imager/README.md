@@ -55,21 +55,20 @@ Once acquisition is complete, FTK Imager will generate:
 
 ##  Screenshots
 ### Volatile Memory (RAM) Capture
-![Step 1](Screenshots/e1p1.png)
-![Step 2](Screenshots/e1p2.png)
-![Step 3](Screenshots/e1p3.png)
+![Step 1](1.png)
+![Step 2](2.png)
+![Step 3](3.png)
+![Step 4](4.png)
+
 
 ### Disk Image Acquisition
-![Step 4](Screenshots/e1p4.png)
-![Step 5](Screenshots/e1p5.png)
-![Step 6](Screenshots/e1p6.png)
-![Step 7](Screenshots/e1p7.png)
-![Step 8](Screenshots/e1p8.png)
+![Step 5](6.png)
+![Step 6](7.png)
 
 ### Verification & Results
-![Step 9](Screenshots/e1p9.png)
-![Step 10](Screenshots/e1p10.png)
-![Step 11](Screenshots/e1p11.png)
+!(5.png)
+![](8.png)
+
 
 ---
 
