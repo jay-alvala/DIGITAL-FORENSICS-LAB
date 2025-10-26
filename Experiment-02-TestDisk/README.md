@@ -67,4 +67,12 @@ TestDisk is an open-source data recovery software designed to recover lost parti
 ---
 
 ## 📷 Screenshots / Evidence
+![](screenshots/21.png)
+![](screenshots/22.png)
+![](screenshots/23.png)
+![](screenshots/24.png)
+![](screenshots/25.png)
+
+
+
 
