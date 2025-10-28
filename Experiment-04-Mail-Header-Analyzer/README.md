@@ -1,75 +1,77 @@
-# Ex. No. 4: Analyze Email Headers and Detect Email Spoofing using MHA (Mail Header Analyzer)
+Experiment 04: Analyze Email Headers and Detect Email Spoofing using MHA (Mail Header Analyzer)
 
-## 🧠Description
-This experiment demonstrates how to analyze an email header and detect possible spoofing using the Mail Header Analyzer (MHA).
+Aim
+To analyze email headers, identify authentication results (SPF, DKIM, DMARC), trace the Received path, and detect possible email spoofing using Mail Header Analyzer (MHA) and manual checks.
 
----
+Description
+Email headers contain metadata that shows the path and handling of an email from sender to recipient. By examining header fields such as Received, Return-Path, Message-ID, SPF, DKIM, and DMARC, you can detect inconsistencies that indicate spoofing or tampering. This experiment walks through accessing headers from common mail providers, parsing key fields, validating authentication, checking IP ownership, and documenting suspicious findings.
 
-### Step-by-Step Guide
+Procedure
+Step 1: Access the Email Header
+- Gmail: Open the email → click ⋮ (More) → **Show original**  
+- Outlook (desktop): Open the email → File → Properties → look for the **Internet headers** box  
+- Yahoo: Open the email → ⋮ (More) → **View raw message**
 
-#### 1. Access the Email Header
-**Gmail:** Open the email → click ⋮ (three dots) → **Show original**  
-**Outlook:** File → Properties → look for the **Internet headers** box  
-**Yahoo:** More (⋮) → **View raw message**
+Step 2: Copy the Email Header
+- Select all text shown in the message header view and copy it to a text file (e.g., `header.txt`) for analysis.
 
-#### 2. Copy the Email Header
-Once accessed, copy all text. This contains metadata about the email’s route.
+Step 3: Identify Key Header Fields
+- From: Sender’s email address  
+- To: Recipient’s email address  
+- Date: Sent date/time  
+- Subject: Subject line  
+- Return-Path: Bounce address  
+- Received: Chain of servers the message passed through (reverse order)  
+- Message-ID: Unique identifier for the message  
+- Authentication-Results / SPF / DKIM / DMARC: Authentication verdicts
 
-#### 3. Identify Key Header Fields
-| Field | Description |
-|-------|-------------|
-| From | Sender’s email address |
-| To | Recipient’s email address |
-| Date | Sent time |
-| Subject | Email subject line |
-| Return-Path | Bounce-back address |
-| Received | Chain of servers that handled the email |
-| Message-ID | Unique identifier for the email |
-| SPF/DKIM | Authentication indicators |
+Step 4: Analyze the `Received` Fields
+- Read Received lines from bottom → top to reconstruct the original path.  
+- Each Received line typically includes:
+  - Sending server hostname/IP
+  - Receiving server hostname
+  - Timestamp
+- Note any large time gaps, mismatched hostnames, or unexpected hops.
 
-#### 4. Analyze the `Received` Fields
-Each `Received` line lists:
-- Sending & receiving server info  
-- IP addresses  
-- Timestamp  
+Step 5: Check IP Addresses and Hostnames
+- For each IP found in Received lines:
+  - Perform a WHOIS lookup to find owner and location.
+  - Reverse-DNS (PTR) lookup to check hostname.
+- Flag IPs that:
+  - Do not belong to the expected mail provider, or
+  - Resolve to generic or suspicious hostnames.
 
-They’re in **reverse order** (latest first).
+Step 6: Examine SPF, DKIM, and DMARC Results
+- SPF: Confirm the sending IP is authorized for the sender’s domain.
+  - Pass = IP is authorized.
+  - Fail = suspicious — possible spoof.
+- DKIM: Check signature validity to ensure content integrity.
+  - Pass = signature valid, content likely untampered.
+  - Fail = content may be altered or signature not present.
+- DMARC: Confirms alignment between From domain and SPF/DKIM.
+  - Pass = policy alignment ok.
+  - Fail = potential spoofing; follow domain policy (quarantine/reject) if enforced.
 
-#### 5. Check IPs and Hostnames
-Use [WHOIS](https://who.is/) or [MXToolbox](https://mxtoolbox.com/) to identify each IP’s owner and location.  
-Watch for mismatched or shady IPs.
+Step 7: Analyze Message-ID
+- Inspect the domain in Message-ID. It should match or be plausible for the sender’s domain.
+- Strange domains or randomized vendors in Message-ID can be a red flag.
 
-#### 6. Examine SPF, DKIM, and DMARC
-| Check | Pass | Fail | Meaning |
-|-------|------|------|---------|
-| SPF | ✅ Authorized | ❌ Not authorized | IP allowed to send from domain |
-| DKIM | ✅ Untampered | ❌ Altered | Email integrity verified |
-| DMARC | ✅ Aligned | ❌ Spoofing risk | Domain policy verification |
+Step 8: Look for Anomalies
+- Domain mismatches between From / Return-Path / Message-ID / Authentication-Results.
+- Received hops from unrelated or geographically odd IPs.
+- Timestamps that go backward or show improbable delays.
+- Missing authentication headers for domains that should use them.
 
-#### 7. Analyze `Message-ID`
-Ensure the domain in `Message-ID` matches the sender’s domain. Mismatch = red flag.
+Step 9: Use Analysis Tools (optional)
+- Paste the header into an online header analyzer or MHA to get a parsed view and automated checks (use MHA output to supplement manual analysis).
+- Save MHA output as a text or image file for evidence.
 
-#### 8. Look for Anomalies
-- Mismatched domains (`From`, `Return-Path`, etc.)  
-- Suspicious IPs or hostnames  
-- Odd timestamps or routing loops  
+Step 10: Document and Report Findings
+- Create a clear report summarizing:
+  - Header source (copy of header)
+  - IP lookups and WHOIS findings
+  - SPF/DKIM/DMARC results
+  - Suspicious indicators and final assessment
+- If phishing/spoofing is suspected, report to your IT/security team and the email provider.
 
-#### 9. Use Online Tools
-Try:
-- [MXToolbox Header Analyzer](https://mxtoolbox.com/EmailHeaders.aspx)
-- [Google Admin Toolbox](https://toolbox.googleapps.com/apps/messageheader/)
-
-#### 10. Document & Report
-Record findings and alert your IT/security team if spoofing is suspected.
-
----
-
-## 🧩 Example Header Analysis
-
-```plaintext
-Received: from mail.example.com (mail.example.com [192.0.2.1])
-  by mail.receiver.com with ESMTP id u29si8604336pjs.40.2023.08.10.07.00.16;
-  Thu, 10 Aug 2023 07:00:16 -0700 (PDT)
-Received: by mail.example.com with SMTP id a1mr1243772ywh.51;
-  Thu, 10 Aug 2023 07:00:15 -0700 (PDT)
-Message-ID: <CA+7eu=4pSeXgQ@mail.example.com>
+Example Header (sample)
