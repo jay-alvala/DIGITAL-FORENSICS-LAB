@@ -77,7 +77,7 @@ Once acquisition is complete, FTK Imager will generate:
 
 ---
 
-## 📂 References
+##  References
 - FTK Imager User Guide – AccessData  
 - Lab manual
 
