@@ -1,77 +1,68 @@
-Experiment 04: Analyze Email Headers and Detect Email Spoofing using MHA (Mail Header Analyzer)
+*EXPERIMENT -- 4*
 
-Aim
-To analyze email headers, identify authentication results (SPF, DKIM, DMARC), trace the Received path, and detect possible email spoofing using Mail Header Analyzer (MHA) and manual checks.
+*MHA*
 
-Description
-Email headers contain metadata that shows the path and handling of an email from sender to recipient. By examining header fields such as Received, Return-Path, Message-ID, SPF, DKIM, and DMARC, you can detect inconsistencies that indicate spoofing or tampering. This experiment walks through accessing headers from common mail providers, parsing key fields, validating authentication, checking IP ownership, and documenting suspicious findings.
+*Mail Header Analyzer*
 
-Procedure
-Step 1: Access the Email Header
-- Gmail: Open the email → click ⋮ (More) → **Show original**  
-- Outlook (desktop): Open the email → File → Properties → look for the **Internet headers** box  
-- Yahoo: Open the email → ⋮ (More) → **View raw message**
+*Link:-* <https://mxtoolbox.com/EmailHeaders.aspx>
 
-Step 2: Copy the Email Header
-- Select all text shown in the message header view and copy it to a text file (e.g., `header.txt`) for analysis.
+*Procedure*
 
-Step 3: Identify Key Header Fields
-- From: Sender’s email address  
-- To: Recipient’s email address  
-- Date: Sent date/time  
-- Subject: Subject line  
-- Return-Path: Bounce address  
-- Received: Chain of servers the message passed through (reverse order)  
-- Message-ID: Unique identifier for the message  
-- Authentication-Results / SPF / DKIM / DMARC: Authentication verdicts
+*Step 1: Get the Email Header*
 
-Step 4: Analyze the `Received` Fields
-- Read Received lines from bottom → top to reconstruct the original path.  
-- Each Received line typically includes:
-  - Sending server hostname/IP
-  - Receiving server hostname
-  - Timestamp
-- Note any large time gaps, mismatched hostnames, or unexpected hops.
+-   First, you need to copy the full, raw header from the email.
 
-Step 5: Check IP Addresses and Hostnames
-- For each IP found in Received lines:
-  - Perform a WHOIS lookup to find owner and location.
-  - Reverse-DNS (PTR) lookup to check hostname.
-- Flag IPs that:
-  - Do not belong to the expected mail provider, or
-  - Resolve to generic or suspicious hostnames.
+-   Gmail: Open the email, click the three dots (⋮), and select Show
+    original.
 
-Step 6: Examine SPF, DKIM, and DMARC Results
-- SPF: Confirm the sending IP is authorized for the sender’s domain.
-  - Pass = IP is authorized.
-  - Fail = suspicious — possible spoof.
-- DKIM: Check signature validity to ensure content integrity.
-  - Pass = signature valid, content likely untampered.
-  - Fail = content may be altered or signature not present.
-- DMARC: Confirms alignment between From domain and SPF/DKIM.
-  - Pass = policy alignment ok.
-  - Fail = potential spoofing; follow domain policy (quarantine/reject) if enforced.
+-   Select all the text in the header and copy it.
+<img width="1919" height="1019" alt="Image" src="https://github.com/user-attachments/assets/4cc06e95-bce2-4662-9067-402dc176ed15" />
+*Step 2: Use a Mail Header Analyzer*
 
-Step 7: Analyze Message-ID
-- Inspect the domain in Message-ID. It should match or be plausible for the sender’s domain.
-- Strange domains or randomized vendors in Message-ID can be a red flag.
+-   The easiest way to analyze the header is with an online tool.
 
-Step 8: Look for Anomalies
-- Domain mismatches between From / Return-Path / Message-ID / Authentication-Results.
-- Received hops from unrelated or geographically odd IPs.
-- Timestamps that go backward or show improbable delays.
-- Missing authentication headers for domains that should use them.
+-   Navigate to a site which analyze Email Header
 
-Step 9: Use Analysis Tools (optional)
-- Paste the header into an online header analyzer or MHA to get a parsed view and automated checks (use MHA output to supplement manual analysis).
-- Save MHA output as a text or image file for evidence.
+-   Paste the entire header you copied into the analysis box.
 
-Step 10: Document and Report Findings
-- Create a clear report summarizing:
-  - Header source (copy of header)
-  - IP lookups and WHOIS findings
-  - SPF/DKIM/DMARC results
-  - Suspicious indicators and final assessment
-- If phishing/spoofing is suspected, report to your IT/security team and the email provider.
+-   Click the \"Analyze\" button to get a parsed, easy-to-read report.
+<img width="1920" height="1080" alt="Image" src="https://github.com/user-attachments/assets/f79add4c-d4cc-42f9-9887-651916019dec" />
+> *Step 3: Analyze The Report*
 
-Example Header (sample)
+-   This is the most critical step. In the analyzer\'s report, look for
+    the SPF, DKIM, and DMARC results.
+
+*Review the Overall Delivery Summary*
+
+-   First, look at the high-level summary to get an immediate sense of
+    the email\'s status.
+
+-   Check DMARC Compliance: The report shows the email is DMARC
+    Compliant. This is the most important overall result.
+
+-   Check SPF Status: Both SPF Authenticated and SPF Alignment passed.
+    This means the sending server was authorized.
+
+-   Check DKIM Status: DKIM Alignment passed, but DKIM Authenticated
+    failed (❌). This is a critical finding and indicates a problem with
+    the email\'s digital signature.
+
+*Investigate the SPF Record and Email Path*
+
+-   Next, verify why the SPF check passed.
+
+-   Examine the SPF Record: The SPF record for the domain is v=spf1
+    include:mailgun.org \~all. This record explicitly authorizes servers
+    from Mailgun to send emails on its behalf.
+
+-   Trace the Relay Information: The delivery path shows the email was
+    sent from m241-136.mailgun.net.
+
+-   Conclusion: Since the email came from a Mailgun server, which is
+    authorized in the SPF record, the SPF check passed.
+<img width="1920" height="1080" alt="Image" src="https://github.com/user-attachments/assets/0d632aae-3824-465a-9bf4-7a3525a5102d" />
+<img width="1920" height="1080" alt="Image" src="https://github.com/user-attachments/assets/86d99d0e-bbbe-4192-8d76-8724154fca8a" />
+
+*Analyze the DKIM Failure*
+
+*References*
