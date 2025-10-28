@@ -48,4 +48,12 @@ This experiment demonstrates how to capture login credentials using HTTP request
 ---
 
 ## 📷 Screenshots / Evidence
-![](images/3.1.jpeg)
+![](screenshots/3.1.png)
+![](screenshots/3.2.png)
+![](screenshots/3.3.png)
+![](screenshots/3.4.png)
+![](screenshots/3.5.png)
+
+
+
+
