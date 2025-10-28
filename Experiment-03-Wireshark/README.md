@@ -1,11 +1,11 @@
 # Experiment 3: Password Capturing using Wireshark
 
-## 🎯 Aim
+##  Aim
 To capture and analyze network traffic using **Wireshark** and extract login credentials transmitted over insecure protocols (HTTP).
 
 ---
 
-## 📝 Description
+##  Description
 Wireshark is a powerful network protocol analyzer that can capture and inspect data packets in real time.  
 If a protocol transmits data in plaintext (like HTTP, FTP, Telnet), Wireshark can sniff sensitive information such as:
 
@@ -18,7 +18,7 @@ This experiment demonstrates how to capture login credentials using HTTP request
 
 ---
 
-## ⚙️ Procedure
+##  Procedure
 
 ### Step 1: Start Wireshark
 - Open **Wireshark** on Windows or Linux VM.
