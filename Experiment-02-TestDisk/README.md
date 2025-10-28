@@ -41,26 +41,22 @@ TestDisk is an open-source data recovery software designed to recover lost parti
 - Highlight a partition → press **p** to list files.
 - Red entries = deleted files.
 
-### Step 6: Deeper Search (if needed)
-- Use **Deeper Search** if partitions are still missing.
-- It will search for FAT/NTFS/ext superblocks.
-- Verify by listing files.
 
-### Step 7: Mark and Recover Partitions
+### Step 6: Mark and Recover Partitions
 - Highlight the correct partition.
 - Change status from **D (Deleted)** → **L (Logical)** or **P (Primary)**.
 - Press Enter to confirm.
 
-### Step 8: Write Partition Table
+### Step 7: Write Partition Table
 - Choose **Write** → press Enter → confirm with **Y**.
 - Partition table will be saved.
 
-### Step 9: Repair Boot Sector (if needed)
+### Step 8: Repair Boot Sector (if needed)
 - If NTFS boot sector is damaged:
   - Select **Backup BS** to restore from backup.
   - Confirm → now Boot Sector and Backup are identical.
 
-### Step 10: Restart
+### Step 9: Restart
 - Exit TestDisk.
 - Restart system to access recovered partitions/files.
 
@@ -72,6 +68,12 @@ TestDisk is an open-source data recovery software designed to recover lost parti
 ![](screenshots/23.png)
 ![](screenshots/24.png)
 ![](screenshots/25.png)
+![](screenshots/26.png)
+![](screenshots/27.png)
+![](screenshots/28.png)
+
+
+
 
 
 
