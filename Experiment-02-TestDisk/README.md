@@ -1,11 +1,11 @@
 # Experiment 2: Recover Deleted or Damaged Files using TestDisk
 
-## 🎯 Aim
+##  Aim
 Recover deleted or damaged files and partitions from a storage device using **TestDisk**.
 
 ---
 
-## 📝 Description
+##  Description
 TestDisk is an open-source data recovery software designed to recover lost partitions and repair non-booting disks. It can:
 
 - Fix partition tables
@@ -15,7 +15,7 @@ TestDisk is an open-source data recovery software designed to recover lost parti
 
 ---
 
-## ⚙️ Procedure
+##  Procedure
 
 ### Step 1: Start TestDisk
 - Run `testdisk_win.exe`
@@ -62,7 +62,7 @@ TestDisk is an open-source data recovery software designed to recover lost parti
 
 ---
 
-## 📷 Screenshots
+##  Screenshots
 ![](screenshots/21.png)
 ![](screenshots/22.png)
 ![](screenshots/23.png)
